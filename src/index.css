@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
 
 
 root {
@@ -13,7 +13,9 @@ root {
 
 body {
   background-color: #1f2937;
-  color: #ffffff
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
 }
 
 /* a {

@@ -1,117 +1,55 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
-import Dashboard from './components/Dashboard';
-import Customers from './components/Customers';
-import Appointments from './components/Appointments';
-import Payments from './components/Payments';
-import Setting from './components/Setting';
-import Login from './components/Login';
-import Layout from './components/Layout';
+import Dashboard from './components/page/Dashboard';
+import Settings from './components/page/Settings';
+import Login from './components/page/Login';
+import Layout from './components/layout';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import AiInsights from "./components/page/AiInsights";
+import Calender from "./components/page/Calender";
+import Patients from "./components/page/Patients";
+import Submissions from "./components/page/Submissions";
+import AllDocs from "./components/page/AllDocs";
+import Billing from "./components/page/Billing";
+import Pharmacy from "./components/page/Pharmacy";
+import LabIntegrations from "./components/page/LabIntegrations";
+import Financial from "./components/page/Financial";
+import Team from "./components/page/Team";
 
-
-// Layout
-// function Layout({ children }: { children: React.ReactNode }) {
-//   const [open, setOpen] = useState(true);
-
-
-//   return (
-//     <div className="flex h-screen w-screen bg-gray-100">
-//       {/* Sidebar */}
-//       <div
-//         className={`bg-white shadow-lg transition-all duration-300 ${open ? "w-64" : "w-20"
-//           }`}
-//       >
-//         <div className="flex items-center justify-between p-4">
-//           <button onClick={() => setOpen(!open)} className="text-lg">☰</button>
-//         </div>
-//         <nav className={`mt-4 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-//           <ul className="flex flex-col gap-2 p-2">
-//             <li>
-//               <Link
-//                 to="/"
-//                 className="block p-2 rounded hover:bg-gray-200 transition"
-//               >
-//                 Dashboard
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 to="/customers"
-//                 className="block p-2 rounded hover:bg-gray-200 transition"
-//               >
-//                 Customers
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 to="/appointments"
-//                 className="block p-2 rounded hover:bg-gray-200 transition"
-//               >
-//                 Appointments
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 to="/paymets"
-//                 className="block p-2 rounded hover:bg-gray-200 transition"
-//               >
-//                 Payments
-//               </Link>
-//             </li>
-//             <li>
-//               <Link
-//                 to="/setting"
-//                 className="block p-2 rounded hover:bg-gray-200 transition"
-//               >
-//                 Setting
-//               </Link>
-//             </li>
-//           </ul>
-//         </nav>
-//       </div>
-
-
-//       {/* Right section */}
-//       <div className="flex-1 flex flex-col">
-//         {/* Top Navigation */}
-//         <header className="h-16 bg-white shadow flex items-center justify-between px-6">
-//           <h2 className="text-xl font-semibold">PRAXIION</h2>
-//           <Link
-//             to="/login"
-//             className="block p-2 rounded hover:bg-gray-200 transition"
-//           >
-//             Login
-//           </Link>
-//           <div>User</div>
-//         </header>
-
-
-//         {/* Main Content */}
-//         <main className="flex-1 overflow-auto p-4">{children}</main>
-//       </div>
-//     </div>
-//   );
-// }
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    background: {
+      default: "#1f2937",   // same as tailwind gray-800
+      paper: "#111827",     // sidebar and paper surfaces
+    },
+  },
+});
 
 function App() {
   return (
     <>
-      <Router>
-
-        <Routes>
-          {/* <Route path="/" element={<Dashboard />} /> */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/appointments" element={<Appointments />} />
-            <Route path="/paymets" element={<Payments />} />
-            <Route path="/setting" element={<Setting />} />
-
-          </Route>
-        </Routes>
-
-      </Router>
+      <ThemeProvider theme={darkTheme}>
+        <Router>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="/calender" element={<Calender />} />
+              <Route path="/patients" element={<Patients />} />
+              <Route path="/submissions" element={<Submissions />} />
+              <Route path="/alldocs" element={<AllDocs />} />
+              <Route path="/billing" element={<Billing />} />
+              <Route path="/pharmacy" element={<Pharmacy />} />
+              <Route path="/labintegrations" element={<LabIntegrations />} />
+              <Route path="/financial" element={<Financial />} />
+              <Route path="/aiinsights" element={<AiInsights />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </>
   )
 }
