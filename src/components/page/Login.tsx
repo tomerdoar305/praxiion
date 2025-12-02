@@ -6,7 +6,8 @@ import {
     Typography,
     Paper,
     IconButton,
-    InputAdornment
+    InputAdornment,
+    LinearProgress
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -14,11 +15,17 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        // TODO: Add your login logic here
-        navigate("/"); // Go to dashboard after login
+        setLoading(true);
+
+        // simulate async login
+        setTimeout(() => {
+            setLoading(false);
+            navigate("/"); // or whatever page
+        }, 2000);
     };
 
     return (
@@ -31,6 +38,11 @@ export default function Login() {
                 backgroundColor: "#1e1e1e",
             }}
         >
+            {loading && (
+                <LinearProgress
+                    sx={{ position: "absolute", top: 0, left: 0, width: "100%" }}
+                />
+            )}
             <Paper
                 elevation={6}
                 sx={{
